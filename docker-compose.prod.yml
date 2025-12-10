@@ -7,9 +7,11 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
       # Reemplaza con tu email real en el servidor
-      - "--certificatesresolvers.myresolver.acme.email=admin@ivaan-dev.com" 
+      - "--certificatesresolvers.myresolver.acme.email=icaceressatorres2001@gmail.com" 
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
+      - "80:80"
       - "443:443"
     volumes:
       - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
