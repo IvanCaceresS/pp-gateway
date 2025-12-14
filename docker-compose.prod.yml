@@ -9,6 +9,15 @@ services:
       # Reemplaza con tu email real en el servidor
       - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_EMAIL}" 
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      # Security & Logs
+      - "--accesslog=true"
+      - "--accesslog.filepath=/var/log/traefik/access.log"
+      - "--log.level=INFO"
+      - "--api.dashboard=true"
+      # Dashboard insecure for now (needs middleware), but logs are critical
+      - "--api.insecure=false" 
+    security_opt:
+      - "no-new-privileges:true"
     ports:
       - "80:80"
       - "443:443"
